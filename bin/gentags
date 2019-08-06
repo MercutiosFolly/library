@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# @file   gentags
+# @author James Hind
+# @date   01/29/2016
+# @ver    1.0
+#
+# @brief 
+#   Generates tag database for cscope. Run at the project root folder. It will create a cscope
+#   folder and a cscope.db file. 
+#   https://www.embeddedarm.com/blog/tag-jumping-in-a-codebase-using-ctags-and-cscope-in-vim/
+#
+# @note
+#   To update the tag db while in vim, run `:! gentags` then `:cs reset`
+
+CSCOPE_DIR="$PWD/cscope"
+
+if [ ! -d "CSCOPE_DIR" ]; then
+  mkdir "$CSCOPE_DIR"
+fi
+
+echo "Finding Files..."
+find "$PWD" -name '*.[ch]' \
+  -o -name '*.java' \
+  -o -name '*.cpp' \
+  -o -name '*.hpp' \
+  -o -name '*.c' \
+  -o -name '*.cc' \
+  -o -name '*.h' \
+  -o -name '*.py' \
+  -o -name '*.php' \ > "$CSCOPE_DIR/cscope.files"
+
+echo "Adding files to cscope db: $PWD/cscope.db..."
+cscope -b -i "$CSCOPE_DIR/cscope.files"
+
+export CSCOPE_DB="$PWD/cscope.out"
+echo "Exported CSCOPE_DB to: '$CSCOPE_DB'"
+
+

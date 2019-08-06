@@ -1,0 +1,60 @@
+#!/bin/bash
+
+##############
+# .vim dir
+##############
+
+# Backup existing vim directory
+if [ -d "~/.vim" ] then
+  echo "Backing up existing .vim directory..."
+  if [ ! -d "~/.vim_backup" ] then
+    cp -r ~/.vim ~/.vim_backup
+    echo "Complete!"
+  else
+    echo "Unable to backup .vim directory. Aborting..."
+    exit 1
+  fi
+fi
+
+# Installing vim directory
+echo "Installing .vim directory..."
+cp -r ./.vim ~/.vim 
+
+##############
+# bin dir
+##############
+
+echo "Creating ~/bin directory..."
+if [ ! -d "~/bin" ] then
+  mkdir ~/bin
+fi
+
+cp ./bin/* ~/bin
+echo "Complete!"
+
+##############
+# configs
+##############
+echo "Installing configurations..."
+if [ -f ~/.bashrc ] then
+  if [ ! -f ~/.bashrc_backup ] then
+    mv ~/.bashrc ~/.bashrc_backup
+  else
+    echo "Unable to backup configurations: bashrc"
+    exit 1
+  fi
+fi
+cp config/.bashrc ~/.bashrc
+
+if [ -f ~/.vimrc ] then
+  if [ ! -f ~/.vimrc_backup ] then
+    mv ~/.vimrc ~/.vimrc_backup
+  else
+    echo "Unable to backup configurations: vimrc"
+    exit 1
+  fi
+fi
+cp config/.vimrc ~/.vimrc
+
+exit 0
+

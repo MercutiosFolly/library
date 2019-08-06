@@ -1,0 +1,15 @@
+[submodule ".vim/nerdtree"]
+	path = .vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree
+[submodule ".vim/nerdtree-git-plugin"]
+	path = .vim/bundle/nerdtree-git-plugin
+	url = https://github.com/Xuyuanp/nerdtree-git-plugin.git
+[submodule ".vim/bundle/vim-fugitive"]
+	path = .vim/bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule ".vim/bundle/cscope_maps"]
+	path = .vim/bundle/cscope_maps
+	url = https://github.com/chazy/cscope_maps
+[submodule ".vim/bundle/youcompleteme"]
+	path = .vim/bundle/youcompleteme
+	url = https://github.com/valloric/youcompleteme
