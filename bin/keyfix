@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# @file   keyfix
+# @author James Hind
+# @date   10/15/2018
+# @ver    1.0
+#
+# @brief 
+#   Relaunch gpg-agent and instruct it to use the current terminal.
+#   When utilizing curses for pinentry on smart-keys, it will send
+#   the query to whatever terminal it thinks is active. This just
+#   makes it active.
+
+sudo killall gpg-agent
+gpgconf --launch gpg-agent
+gpg-connect-agent updatestartuptty /bye

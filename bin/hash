@@ -1,0 +1,15 @@
+#!/bin/bash
+# @file   hash
+# @author James Hind
+# @date   02/03/2019
+# @ver    1.0
+#
+# @brief
+#   Given credentials for webaccess, hash and register them.
+
+user=$1
+realm=$2
+pass=$3
+hash=`echo -n "$user:$realm:$pass" | md5sum | cut -b -32`
+echo "$user:$realm:$hash"
+sudo echo "$user:$realm:$hash" > /etc/lighttpd/.htpasswd/lighttpd-htdigest.user
