@@ -1,15 +1,61 @@
 #!/bin/bash
 
+# TODO: auto-detect this
+os="ubuntu" # "arch"
+
+# specify packages
+packageList="vim tmux git firefox"
+
+##############
+# Setup/formalities
+##############
+if [[ `id -u` -ne 0 ]]; then
+  echo -e "Insufficient permissions, please run as root. \n Aborting..."
+  exit 1
+fi
+
+dir0=`pwd`
+
+##############
+# Packages
+##############
+echo "Installing Packages..."
+
+if [[ $os == "ubuntu" ]]; then
+  apt-get install -y $packageList 
+  if [ $? -eq 0 ]; then
+    echo "Complete!"
+  else
+    echo "Failed"
+  fi
+elif [[ $os == "arch" ]]; then
+  pacman -S --noconfirm $packageList
+  if [ $? -eq 0 ]; then
+    echo "Complete!"
+  else
+    echo "Failed"
+  fi
+else
+  echo -e "Please configure the install script. \n Aborting..."
+fi 
+
+
 ##############
 # .vim dir
 ##############
 
 # Backup existing vim directory
-if [ -d "~/.vim" ] then
+if [ -d "$HOME/.vim" ]; then
   echo "Backing up existing .vim directory..."
-  if [ ! -d "~/.vim_backup" ] then
-    cp -r ~/.vim ~/.vim_backup
-    echo "Complete!"
+  if [ ! -d "$HOME/.vim_backup" ]; then
+    cp -r $HOME/.vim $HOME/.vim_backup 2>/dev/null
+    if [ $? -eq 0 ]; then
+      echo "Complete!"
+    else
+      echo "Failed"
+    fi
+    chown -R $SUDO_USER:$SUDO_USER $HOME/.vim
+    chown $SUDO_USER:$SUDO_USER $HOME/.vim_backup
   else
     echo "Unable to backup .vim directory. Aborting..."
     exit 1
@@ -18,43 +64,85 @@ fi
 
 # Installing vim directory
 echo "Installing .vim directory..."
-cp -r ./.vim ~/.vim 
+cp -r ./.vim $HOME/.vim  2>/dev/null
+if [ $? -eq 0 ]; then
+  echo "Complete!"
+else
+  echo "Failed"
+fi
+chown -R $SUDO_USER:$SUDO_USER $HOME/.vim
 
 ##############
 # bin dir
 ##############
 
-echo "Creating ~/bin directory..."
-if [ ! -d "~/bin" ] then
-  mkdir ~/bin
+if [ ! -d "$HOME/bin" ]; then
+  echo "Creating $HOME/bin directory..."
+  mkdir $HOME/bin 2>/dev/null
+  if [ $? -eq 0 ]; then
+    echo "Complete!"
+  else
+    echo "Failed"
+  fi
 fi
 
-cp ./bin/* ~/bin
-echo "Complete!"
+echo "Copying..."
+cp ./bin/* $HOME/bin 2>/dev/null
+if [ $? -eq 0 ]; then
+  echo "Complete!"
+else
+  echo "Failed"
+fi
+chown -R $SUDO_USER:$SUDO_USER $HOME/bin
 
 ##############
 # configs
 ##############
 echo "Installing configurations..."
-if [ -f ~/.bashrc ] then
-  if [ ! -f ~/.bashrc_backup ] then
-    mv ~/.bashrc ~/.bashrc_backup
+
+if [ -f $HOME/.bashrc ]; then
+  if [ ! -f $HOME/.bashrc_backup ]; then
+    mv $HOME/.bashrc $HOME/.bashrc_backup 2>/dev/null
+    if [ $? -eq 0 ]; then
+      echo "Complete!"
+    else
+      echo "Failed"
+    fi
   else
     echo "Unable to backup configurations: bashrc"
     exit 1
   fi
 fi
-cp config/.bashrc ~/.bashrc
+echo "Copying..."
+cp config/.bashrc $HOME/.bashrc 2>/dev/null
+if [ $? -eq 0 ]; then
+  echo "Complete!"
+else
+  echo "Failed"
+fi
+chown $SUDO_USER:$SUDO_USER $HOME/.bashrc
 
-if [ -f ~/.vimrc ] then
-  if [ ! -f ~/.vimrc_backup ] then
-    mv ~/.vimrc ~/.vimrc_backup
+if [ -f $HOME/.vimrc ]; then
+  if [ ! -f $HOME/.vimrc_backup ]; then
+    mv $HOME/.vimrc $HOME/.vimrc_backup 2>/dev/null
+    if [ $? -eq 0 ]; then
+      echo "Complete!"
+    else
+      echo "Failed"
+    fi
   else
     echo "Unable to backup configurations: vimrc"
     exit 1
   fi
 fi
-cp config/.vimrc ~/.vimrc
+echo "Copying..."
+cp config/.vimrc $HOME/.vimrc 2>/dev/null
+if [ $? -eq 0 ]; then
+  echo "Complete!"
+else
+  echo "Failed"
+fi
+chown $SUDO_USER:$SUDO_USER $HOME/.vimrc
 
 exit 0
 
