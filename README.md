@@ -12,6 +12,7 @@
   2. [config](#config)
   3. [bin](#bin)
   4. [doc](#doc)
+  5. [notes](#notes)
 
 ## [.vim](.vim)
 
@@ -35,3 +36,7 @@
 
   Various readmes, how-tos, guides, and docs
 
+## [notes](notes)
+
+  In general, I maintain system specific notes in $HOME/system_notes.md.
+  This allows me to keep tabs on any weird changes I may have made
