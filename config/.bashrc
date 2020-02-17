@@ -92,6 +92,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias can-haz='sudo apt-get install'
+alias tmux='tmux -2'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -121,6 +122,11 @@ fi
 set -o vi
 export EDITOR=vim
 
+################
 # Setup PATH
+################
 export PATH=$PATH:/home/james/bin
+
+# export ~/.local/bin for pipenv
+export PATH=$PATH:~/.local/bin
 

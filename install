@@ -100,6 +100,7 @@ chown -R $SUDO_USER:$SUDO_USER $HOME/bin
 ##############
 echo "Installing configurations..."
 
+# bashrc
 if [ -f $HOME/.bashrc ]; then
   if [ ! -f $HOME/.bashrc_backup ]; then
     mv $HOME/.bashrc $HOME/.bashrc_backup 2>/dev/null
@@ -122,6 +123,7 @@ else
 fi
 chown $SUDO_USER:$SUDO_USER $HOME/.bashrc
 
+# vimrc
 if [ -f $HOME/.vimrc ]; then
   if [ ! -f $HOME/.vimrc_backup ]; then
     mv $HOME/.vimrc $HOME/.vimrc_backup 2>/dev/null
@@ -143,6 +145,29 @@ else
   echo "Failed"
 fi
 chown $SUDO_USER:$SUDO_USER $HOME/.vimrc
+
+# tmux.conf
+if [ -f $HOME/.tmux.conf ]; then
+  if [ ! -f $HOME/.tmux.conf_backup ]; then
+    mv $HOME/.tmux.conf $HOME/.tmux.conf 2>/dev/null
+    if [ $? -eq 0 ]; then
+      echo "Complete!"
+    else
+      echo "Failed"
+    fi
+  else
+    echo "Unable to backup configurations: tmux.conf"
+    exit 1
+  fi
+fi
+echo "Copying..."
+cp config/.tmux.conf $HOME/.tmux.conf 2>/dev/null
+if [ $? -eq 0 ]; then
+  echo "Complete!"
+else
+  echo "Failed"
+fi
+chown $SUDO_USER:$SUDO_USER $HOME/.tmux.conf
 
 exit 0
 

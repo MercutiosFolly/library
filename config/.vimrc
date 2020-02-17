@@ -30,6 +30,16 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 
+" PYTHON whitespace
+autocmd Filetype python setlocal expandtab
+  \ | setlocal shiftround
+  \ | setlocal textwidth=79
+  \ | setlocal shiftwidth=4
+  \ | setlocal tabstop=4
+  \ | setlocal softtabstop=4
+  \ | setlocal autoindent
+let python_highlight_all = 1
+
 " Search
 set hlsearch
 set ignorecase
