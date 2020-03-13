@@ -1,6 +1,14 @@
 # Linux cheat sheet 
 A quick reference for less commonly used commands and tricks.
 
+## Useful One-Liners
+
+    * Checking md5 sums: 
+    For macos:
+        `curl -s https://site.com/md5sumfile.md5 && md5 -q /path/to/object`
+    For Linux:
+        `echo "$(curl -s https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest.md5) /usr/local/bin/ecs-cli" | md5sum -c -`
+
 ## File management
   **`xxd`**
     Create hex dumps

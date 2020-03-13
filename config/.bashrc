@@ -125,7 +125,7 @@ export EDITOR=vim
 ################
 # Setup PATH
 ################
-export PATH=$PATH:/home/james/bin
+export PATH=$PATH:$HOME/bin
 
 # export ~/.local/bin for pipenv
 export PATH=$PATH:~/.local/bin
