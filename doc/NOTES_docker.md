@@ -34,6 +34,20 @@ You're on your own ;)
     Stop a specific container from running. Used primarily for when a container is detached
     More than 1 argument may be supplied
 
+    * docker start <containerID>
+
+    * docker exec <containerID> <command>
+
+    * docker top <containerID>
+
+    * docker logs <containerID>
+
+    * docker attach <containerID>
+      ^P^Q is the escape sequence and ^c will terminate the process
+
+    * docker inspect [--format='{{}}'] <containerID>
+    List the details of the container in JSON format
+
     * docker rm {<contaienrID>} ...
     Remove a container that has stopped (see `docker ps -a` or `docker container ls`). More than 1
     argument may be supplied.
@@ -53,6 +67,8 @@ You're on your own ;)
 
     * docker push <user/container>
     Push container to registry
+
+    * docker commit <containerID> <name>:<version>
 
     * docker login
     Log into your dockerhub account through the command line
