@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Log in to a DTR server on MacOS
+
+# Configure Variables
+DTR1=jhind-dev-jhind-ddc-1-dtrleader.train.mirantis.com
+PORT=443
+DEST_DIR=~/projects/certs/
+
+# Grab cert from DTR and Register it on System
+if [[ ! -d ${DEST_DIR} ]]; then
+  mkdir ${DEST_DIR}
+fi
+sudo curl -k https://${DTR1}:${PORT}/ca -o ${DEST_DIR}${DTR1}:${PORT}.crt
+mv ${DTR1}:${PORT}.crt ${DEST_DIR}
+sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ${DEST_DIR}${DTR1}:{PORT}.crt
+
+# Login to DTR
+docker login ${DTR1}:${PORT}

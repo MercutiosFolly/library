@@ -1,3 +1,6 @@
+" For Cscope functionality, please see:
+" http://cscope.sourceforge.net/cscope_vim_tutorial.html
+ 
 " Default Colorscheme
 colorscheme slate
 
