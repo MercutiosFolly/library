@@ -4,7 +4,7 @@
 os="ubuntu" # "arch"
 
 # specify packages
-packageList="vim tmux git nmap firefox"
+packageList="vim tmux git nmap jq firefox cscope docker"
 
 ##############
 # Setup/formalities

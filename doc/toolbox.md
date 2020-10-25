@@ -57,6 +57,10 @@ A quick reference for less commonly used commands and tricks.
     `ssh user@host '() { :;}; echo BAD CODE'` allows an authorized user with an authorized key
     to execute restricted commands. Good for restriced shell escalating.
 
+  **PHP**
+    Somebody using passthru(), exec(), or system() can possibly be exploited if they aren't
+    using escapeshellarg().
+
 ## Sites
 
 https://overthewire.org

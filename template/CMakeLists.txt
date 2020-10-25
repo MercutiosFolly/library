@@ -22,8 +22,8 @@ set( INSTALL_LOCATION "/usr/local/src" )
 
 set( MY_DEBUG_FLAGS -Wall -Wextra -Werror -g )
 set( MY_RELEASE_FLAGS -Wpedantic -03 )
-set( CMAKE_CSS_STANDARD 11 )
-set( CMAKE_CSS_STANDARD_REQUIRED ON )
+set( CMAKE_CXX_STANDARD 11 )
+set( CMAKE_CXX_STANDARD_REQUIRED ON )
 
 set( SRC_FILES
 )
