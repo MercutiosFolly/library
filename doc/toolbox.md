@@ -1,13 +1,21 @@
 # Linux cheat sheet 
 A quick reference for less commonly used commands and tricks.
 
+## OS management
+
+**`update-alternatives`**
+    Update your default links in /usr/bin
+
 ## Useful One-Liners
 
-    * Checking md5 sums: 
-    For macos:
-        `curl -s https://site.com/md5sumfile.md5 && md5 -q /path/to/object`
-    For Linux:
-        `echo "$(curl -s https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest.md5) /usr/local/bin/ecs-cli" | md5sum -c -`
+* Checking md5 sums: 
+  For macos:
+    `curl -s https://site.com/md5sumfile.md5 && md5 -q /path/to/object`
+  For Linux:
+    `echo "$(curl -s https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest.md5) /usr/local/bin/ecs-cli" | md5sum -c -`
+
+* Troubleshooting CORS:
+  `curl -X POST -d "gender=male&name_length=long" -H "Origin: http://localhost:3000" http://localhost:4200/post -v`
 
 ## File Management
 **`xxd`**
